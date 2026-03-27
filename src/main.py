@@ -3,44 +3,38 @@ from mesa import Mesa
 from pedido import Pedido
 from comanda import Comanda
 
-print("INICIO")
+# LISTA DE COMANDAS
+lista_comandas = []
 
-# Produtos
-picanha = Produto("Picanha", 100, 10)
-cerveja = Produto("Cerveja", 10, 50)
-refrigerante = Produto("Refrigerante", 8, 30)
+# PRODUTOS FIXOS
+cardapio = [
+    Produto("Picanha", 100,10),
+    Produto("Cerveja", 10,10),
+    Produto("Refrigerante", 8,10)
+]
 
-cardapio = [picanha, cerveja, refrigerante]
+# FUNÇÃO RELATÓRIO
+def ver_relatorio(comandas):
+    if not comandas:
+        print("\nNenhuma comanda encontrada!")
+        return
 
+    print("\n--- RELATÓRIO ---")
 
-print("\n--- CARDÁPIO ---")
-for i, produto in enumerate(cardapio):
-    print(i, "-", produto.nome, "R$", produto.preco)
+    for comanda in comandas:
+        print(f"\nMesa: {comanda.mesa.numero}")
+        total = 0
 
-# Mesas
-mesa1 = Mesa(1)
-mesa2 = Mesa(2)
+        for item in comanda.itens:
+            subtotal = item.produto.preco * item.quantidade
+            total += subtotal
 
-# Comandas
-comanda1 = Comanda(mesa1)
-comanda2 = Comanda(mesa2)
+            print(f"- {item.produto.nome} | Qtd: {item.quantidade} | R$ {subtotal}")
 
-opcao = int(input("Escolha o produto: "))
-quantidade = int(input("Quantidade: "))
-
-mesa_escolhida = int(input("Escolha a mesa (1 ou 2): "))
-if mesa_escolhida == 1:
-    comanda = comanda1
-elif mesa_escolhida == 2:
-    comanda = comanda2
-else:
-    print("Mesa inválida")
-    exit()
-produto_escolhido = cardapio[opcao]
-comanda.adicionar_pedido(Pedido(produto_escolhido, quantidade))
+        print(f"Total da mesa: R$ {total}")
 
 
-# Fechamento
+# MENU
 while True:
     print("\n--- MENU ---")
     print("1 - Adicionar pedido")
@@ -48,53 +42,53 @@ while True:
     print("3 - Ver relatório")
     print("0 - Sair")
 
-    opcao_menu = input("Escolha: ")
+    opcao = input("Escolha: ")
 
-    # 👉 ADICIONAR PEDIDO
-    if opcao_menu == "1":
-        print("\n--- CARDÁPIO ---")
-        for i, produto in enumerate(cardapio):
-            print(i, "-", produto.nome, "R$", produto.preco)
+    # ADICIONAR PEDIDO
+    if opcao == "1":
+        numero_mesa = int(input("Número da mesa: "))
+        mesa = Mesa(numero_mesa)
 
-        opcao = int(input("Escolha o produto: "))
+        # CRIA COMANDA
+        comanda = Comanda(mesa)
+
+        print("\nCardápio:")
+        for i, p in enumerate(cardapio):
+            print(f"{i+1} - {p.nome} (R$ {p.preco})")
+
+        escolha = int(input("Escolha o produto: ")) - 1
         quantidade = int(input("Quantidade: "))
-        mesa_escolhida = int(input("Escolha a mesa (1 ou 2): "))
 
-        if mesa_escolhida == 1:
-            comanda = comanda1
-        elif mesa_escolhida == 2:
-            comanda = comanda2
+        produto = cardapio[escolha]
+
+        pedido = Pedido(produto, quantidade)
+        comanda.adicionar_item(pedido)
+
+        lista_comandas.append(comanda)
+
+        print("Pedido adicionado com sucesso!")
+
+    # FECHAR MESA
+    elif opcao == "2":
+        numero = int(input("Número da mesa para fechar: "))
+
+        for comanda in lista_comandas:
+            if comanda.mesa.numero == numero:
+                print(f"Fechando mesa {numero}...")
+                lista_comandas.remove(comanda)
+                print("Mesa fechada!")
+                break
         else:
-            print("Mesa inválida")
-            continue
+            print("Mesa não encontrada!")
 
-        produto_escolhido = cardapio[opcao]
-        comanda.adicionar_pedido(Pedido(produto_escolhido, quantidade))
+    # RELATÓRIO (AGORA FUNCIONA)
+    elif opcao == "3":
+        ver_relatorio(lista_comandas)
 
-    # 👉 FECHAR MESA
-    elif opcao_menu == "2":
-        mesa_escolhida = int(input("Qual mesa fechar (1 ou 2): "))
-
-        if mesa_escolhida == 1:
-            total = comanda1.fechar()
-            print("Mesa 1 fechada. Total:", total)
-        elif mesa_escolhida == 2:
-            total = comanda2.fechar()
-            print("Mesa 2 fechada. Total:", total)
-        else:
-            print("Mesa inválida")
-
-    # 👉 RELATÓRIO
-    elif opcao_menu == "3":
-        print("\n--- RELATÓRIO ---")
-        print("Mesa 1:", comanda1.total())
-        print("Mesa 2:", comanda2.total())
-        print("Total do dia:", comanda1.total() + comanda2.total())
-
-    # 👉 SAIR
-    elif opcao_menu == "0":
-        print("Encerrando sistema...")
+    # SAIR
+    elif opcao == "0":
+        print("Saindo...")
         break
 
     else:
-        print("Opção inválida")
+        print("Opção inválida!")
