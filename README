@@ -1,0 +1,117 @@
+# 🍽 Sistema de Gerenciamento de Restaurante
+
+## 📌 Descrição do Projeto
+
+Este projeto consiste em um sistema simples de gerenciamento de restaurante, desenvolvido com o objetivo de controlar pedidos, comandas e mesas.
+
+O sistema permite adicionar pedidos, visualizar relatórios e gerenciar o fechamento de mesas, utilizando conceitos fundamentais de programação.
+
+---
+
+## 🚀 Funcionalidades
+
+* ✅ Adicionar pedidos a uma mesa
+* ✅ Gerenciar múltiplas comandas
+* ✅ Evitar duplicação de comandas por mesa
+* ✅ Visualizar relatório completo das mesas
+* ✅ Fechar mesa e remover do sistema
+
+---
+
+## 🧱 Estrutura do Projeto
+
+```bash
+sistema-ronan/
+│
+├── README.md
+└── src/
+    ├── main.py
+    ├── produto.py
+    ├── mesa.py
+    ├── pedido.py
+    ├── comanda.py
+    └── persistencia.py
+```
+
+---
+
+## ⚙️ Tecnologias Utilizadas
+
+* Python 3
+* Programação Orientada a Objetos (POO)
+* Manipulação de arquivos (JSON - opcional)
+
+---
+
+## ▶️ Como Executar o Projeto
+
+### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/MT580123321/sistema-ronan.git
+```
+
+### 2. Acessar a pasta do projeto
+
+```bash
+cd sistema-ronan/src
+```
+
+### 3. Executar o sistema
+
+```bash
+py main.py
+```
+
+ou
+
+```bash
+python main.py
+```
+
+---
+
+## 🧠 Paradigmas de Programação Utilizados
+
+O sistema foi desenvolvido utilizando a integração de diferentes paradigmas:
+
+### 🔹 Programação Orientada a Objetos (POO)
+
+Utilizada na modelagem das entidades do sistema:
+
+* Produto
+* Mesa
+* Pedido
+* Comanda
+
+Cada classe possui atributos e métodos próprios, garantindo organização, reutilização e modularidade do código.
+
+### 🔹 Programação Procedural
+
+Aplicada no arquivo `main.py`, responsável pelo fluxo do sistema:
+
+* Controle do menu
+* Entrada de dados do usuário
+* Execução das funcionalidades
+
+---
+
+## 🗺 Roadmap de Desenvolvimento
+
+* [x] Estrutura inicial do sistema
+* [x] Implementação das classes principais
+* [x] Sistema de menu interativo
+* [x] Relatório de comandas
+* [ ] Persistência automática em JSON
+* [ ] Interface gráfica
+* [ ] Controle de estoque
+
+---
+
+## 👥 Equipe
+
+Desenvolvido por:
+
+* MICHEL GUIDO
+* ANDRE ROCHA
+* MICKAEL MIRANDA
