@@ -1,26 +1,36 @@
- Sistema de Gerenciamento de Restaurante
+ # SISTEMA DE GERENCIAMENTO DE RESTAURANTE
 
-##  Descrição do Projeto
+## 1. IDENTIFICAÇÃO DA EQUIPE
 
-Este projeto consiste em um sistema simples de gerenciamento de restaurante, desenvolvido com o objetivo de controlar pedidos, comandas e mesas.
+**Integrantes:**
 
-O sistema permite adicionar pedidos, visualizar relatórios e gerenciar o fechamento de mesas, utilizando conceitos fundamentais de programação.
-
----
-
-##  Funcionalidades
-
-*  Adicionar pedidos a uma mesa
-*  Gerenciar múltiplas comandas
-*  Evitar duplicação de comandas por mesa
-*  Visualizar relatório completo das mesas
-*  Fechar mesa e remover do sistema
+* Michel Guido
+* Andre Rocha
+* Mickael Miranda
 
 ---
 
-##  Estrutura do Projeto
+## 2. DESCRIÇÃO DO PROJETO
 
-```bash
+O presente projeto consiste no desenvolvimento de um sistema simples de gerenciamento de restaurante, com o objetivo de auxiliar no controle de pedidos, comandas e mesas.
+
+O sistema permite registrar pedidos por mesa, evitar duplicidade de comandas, visualizar relatórios completos e realizar o fechamento de mesas, utilizando conceitos fundamentais da programação.
+
+---
+
+## 3. FUNCIONALIDADES IMPLEMENTADAS
+
+* Adicionar pedidos a uma mesa
+* Gerenciar múltiplas comandas
+* Evitar duplicação de comandas por mesa
+* Visualizar relatório completo das mesas
+* Fechar mesa e removê-la do sistema
+
+---
+
+## 4. ESTRUTURA DO PROJETO
+
+```
 sistema-ronan/
 │
 ├── README.md
@@ -35,67 +45,79 @@ sistema-ronan/
 
 ---
 
-##  Tecnologias Utilizadas
+## 5. TECNOLOGIAS UTILIZADAS
 
 * Python 3
 * Programação Orientada a Objetos (POO)
-* Manipulação de arquivos (JSON - opcional)
+* Manipulação de arquivos (JSON)
 
 ---
 
-##  Como Executar o Projeto
+## 6. PARADIGMAS DE PROGRAMAÇÃO
 
-### 1. Clonar o repositório
+### 6.1 Programação Orientada a Objetos (POO)
 
-```bash
-git clone https://github.com/MT580123321/sistema-ronan.git
-```
-
-### 2. Acessar a pasta do projeto
-
-```bash
-cd sistema-ronan/src
-```
-
-### 3. Executar o sistema
-
-```bash
-py main.py
-```
-
-ou
-
-```bash
-python main.py
-
----
-
-##  Paradigmas de Programação Utilizados
-
-O sistema foi desenvolvido utilizando a integração de diferentes paradigmas:
-
-###  Programação Orientada a Objetos (POO)
-
-Utilizada na modelagem das entidades do sistema:
+Utilizada na modelagem das principais entidades do sistema:
 
 * Produto
 * Mesa
 * Pedido
 * Comanda
 
-Cada classe possui atributos e métodos próprios, garantindo organização, reutilização e modularidade do código.
+Cada classe foi desenvolvida com atributos e métodos específicos, garantindo organização, modularidade e reutilização do código.
 
-###  Programação Procedural
+### 6.2 Programação Procedural
 
-Aplicada no arquivo `main.py`, responsável pelo fluxo do sistema:
+Aplicada no arquivo `main.py`, responsável pelo controle do fluxo do sistema:
 
-* Controle do menu
+* Exibição do menu interativo
 * Entrada de dados do usuário
 * Execução das funcionalidades
 
 ---
 
-##  Roadmap de Desenvolvimento
+## 7. DIVISÃO DE RESPONSABILIDADES
+
+### Michel Guido — Estrutura e Modelagem (POO)
+
+* Criação da estrutura do projeto
+* Implementação das classes Produto e Mesa
+* Definição dos atributos e métodos principais
+* Padronização do código
+
+### Andre Rocha — Lógica de Negócio
+
+* Implementação das classes Pedido e Comanda
+* Desenvolvimento das regras do sistema:
+
+  * Adição de pedidos
+  * Controle de comandas
+  * Cálculo de totais
+  * Fechamento de mesas
+
+### Mickael Miranda — Interface e Execução
+
+* Desenvolvimento do arquivo `main.py`
+* Criação do menu interativo
+* Entrada e validação de dados
+* Exibição de relatórios
+* Integração entre as classes
+
+---
+
+## 8. CORREÇÕES REALIZADAS
+
+Para esta versão do trabalho, foram realizadas as seguintes melhorias:
+
+* Organização e padronização do documento
+* Estruturação formal do projeto para entrega acadêmica
+* Revisão da descrição das funcionalidades
+* Melhor detalhamento dos paradigmas de programação utilizados
+* Clareza na divisão de responsabilidades da equipe
+
+---
+
+## 9. ROADMAP DE DESENVOLVIMENTO
 
 * [x] Estrutura inicial do sistema
 * [x] Implementação das classes principais
@@ -107,31 +129,27 @@ Aplicada no arquivo `main.py`, responsável pelo fluxo do sistema:
 
 ---
 
-##  Equipe e Responsabilidades
+## 10. INSTRUÇÕES DE EXECUÇÃO
 
-###  Michel Guido — Estrutura e Modelagem (POO)
-Responsável pela base do sistema e organização das entidades:
-- Criação da estrutura do projeto (pastas e organização geral)
-- Implementação da classe Produto
-- Implementação da classe Mesa
-- Definição dos atributos e métodos principais
-- Padronização do código (POO)
+1. Clonar o repositório:
 
-###  Andre Rocha — Lógica de Negócio
-Responsável pelas regras do sistema e funcionamento interno:
-- Implementação da classe Pedido
-- Implementação da classe Comanda
-- Lógica para:
-  - Adicionar pedidos às mesas
-  - Evitar duplicação de comandas
-  - Cálculo de totais
-  - Controle do fechamento de mesas
+```
+git clone https://github.com/MT580123321/sistema-ronan.git
+```
 
-###  Mickael Miranda — Interface e Execução (main.py)
-Responsável pela interação com o usuário e fluxo do sistema:
-- Desenvolvimento do arquivo main.py
-- Criação do menu interativo
-- Entrada e validação de dados
-- Exibição de relatórios
-- Integração entre as classes
+2. Acessar a pasta:
+
+```
+cd sistema-ronan/src
+```
+
+3. Executar o sistema:
+
+```
+python main.py
+```
+
+
+
+
 
