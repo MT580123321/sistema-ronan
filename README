@@ -1,6 +1,6 @@
-# 🍽 Sistema de Gerenciamento de Restaurante
+ Sistema de Gerenciamento de Restaurante
 
-## 📌 Descrição do Projeto
+##  Descrição do Projeto
 
 Este projeto consiste em um sistema simples de gerenciamento de restaurante, desenvolvido com o objetivo de controlar pedidos, comandas e mesas.
 
@@ -8,17 +8,17 @@ O sistema permite adicionar pedidos, visualizar relatórios e gerenciar o fecham
 
 ---
 
-## 🚀 Funcionalidades
+##  Funcionalidades
 
-* ✅ Adicionar pedidos a uma mesa
-* ✅ Gerenciar múltiplas comandas
-* ✅ Evitar duplicação de comandas por mesa
-* ✅ Visualizar relatório completo das mesas
-* ✅ Fechar mesa e remover do sistema
+*  Adicionar pedidos a uma mesa
+*  Gerenciar múltiplas comandas
+*  Evitar duplicação de comandas por mesa
+*  Visualizar relatório completo das mesas
+*  Fechar mesa e remover do sistema
 
 ---
 
-## 🧱 Estrutura do Projeto
+##  Estrutura do Projeto
 
 ```bash
 sistema-ronan/
@@ -35,7 +35,7 @@ sistema-ronan/
 
 ---
 
-## ⚙️ Tecnologias Utilizadas
+##  Tecnologias Utilizadas
 
 * Python 3
 * Programação Orientada a Objetos (POO)
@@ -43,7 +43,7 @@ sistema-ronan/
 
 ---
 
-## ▶️ Como Executar o Projeto
+##  Como Executar o Projeto
 
 ### 1. Clonar o repositório
 
@@ -67,15 +67,14 @@ ou
 
 ```bash
 python main.py
-```
 
 ---
 
-## 🧠 Paradigmas de Programação Utilizados
+##  Paradigmas de Programação Utilizados
 
 O sistema foi desenvolvido utilizando a integração de diferentes paradigmas:
 
-### 🔹 Programação Orientada a Objetos (POO)
+###  Programação Orientada a Objetos (POO)
 
 Utilizada na modelagem das entidades do sistema:
 
@@ -86,7 +85,7 @@ Utilizada na modelagem das entidades do sistema:
 
 Cada classe possui atributos e métodos próprios, garantindo organização, reutilização e modularidade do código.
 
-### 🔹 Programação Procedural
+###  Programação Procedural
 
 Aplicada no arquivo `main.py`, responsável pelo fluxo do sistema:
 
@@ -96,7 +95,7 @@ Aplicada no arquivo `main.py`, responsável pelo fluxo do sistema:
 
 ---
 
-## 🗺 Roadmap de Desenvolvimento
+##  Roadmap de Desenvolvimento
 
 * [x] Estrutura inicial do sistema
 * [x] Implementação das classes principais
@@ -108,10 +107,31 @@ Aplicada no arquivo `main.py`, responsável pelo fluxo do sistema:
 
 ---
 
-## 👥 Equipe
+##  Equipe e Responsabilidades
 
-Desenvolvido por:
+###  Michel Guido — Estrutura e Modelagem (POO)
+Responsável pela base do sistema e organização das entidades:
+- Criação da estrutura do projeto (pastas e organização geral)
+- Implementação da classe Produto
+- Implementação da classe Mesa
+- Definição dos atributos e métodos principais
+- Padronização do código (POO)
 
-* MICHEL GUIDO
-* ANDRE ROCHA
-* MICKAEL MIRANDA
+###  Andre Rocha — Lógica de Negócio
+Responsável pelas regras do sistema e funcionamento interno:
+- Implementação da classe Pedido
+- Implementação da classe Comanda
+- Lógica para:
+  - Adicionar pedidos às mesas
+  - Evitar duplicação de comandas
+  - Cálculo de totais
+  - Controle do fechamento de mesas
+
+###  Mickael Miranda — Interface e Execução (main.py)
+Responsável pela interação com o usuário e fluxo do sistema:
+- Desenvolvimento do arquivo main.py
+- Criação do menu interativo
+- Entrada e validação de dados
+- Exibição de relatórios
+- Integração entre as classes
+
