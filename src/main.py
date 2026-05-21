@@ -1,94 +1,79 @@
 from produto import Produto
-from mesa import Mesa
-from pedido import Pedido
-from comanda import Comanda
+            numero_mesa = int(input("Número da mesa: "))
 
-# LISTA DE COMANDAS
-lista_comandas = []
+            comanda = buscar_comanda(numero_mesa)
 
-# PRODUTOS FIXOS
-cardapio = [
-    Produto("Picanha", 100,10),
-    Produto("Cerveja", 10,10),
-    Produto("Refrigerante", 8,10)
-]
+            # cria somente se não existir
+            if comanda is None:
+                mesa = Mesa(numero_mesa)
+                comanda = Comanda(mesa)
+                lista_comandas.append(comanda)
 
-# FUNÇÃO RELATÓRIO
-def ver_relatorio(comandas):
-    if not comandas:
-        print("\nNenhuma comanda encontrada!")
-        return
+            print("\nCardápio:")
 
-    print("\n--- RELATÓRIO ---")
+            for i, produto in enumerate(cardapio):
+                print(
+                    f"{i+1} - {produto.nome} "
+                    f"(R$ {produto.preco}) "
+                    f"| Estoque: {produto.estoque}"
+                )
 
-    for comanda in comandas:
-        print(f"\nMesa: {comanda.mesa.numero}")
-        total = 0
+            escolha = int(input("Escolha o produto: ")) - 1
+            quantidade = int(input("Quantidade: "))
 
-        for item in comanda.itens:
-            subtotal = item.produto.preco * item.quantidade
-            total += subtotal
+            if escolha < 0 or escolha >= len(cardapio):
+                print("Produto inválido!")
+                continue
 
-            print(f"- {item.produto.nome} | Qtd: {item.quantidade} | R$ {subtotal}")
+            produto = cardapio[escolha]
 
-        print(f"Total da mesa: R$ {total}")
+            pedido = Pedido(produto, quantidade)
+            comanda.adicionar_item(pedido)
 
+            salvar_dados(lista_comandas)
 
-# MENU
-while True:
-    print("\n--- MENU ---")
-    print("1 - Adicionar pedido")
-    print("2 - Fechar mesa")
-    print("3 - Ver relatório")
-    print("0 - Sair")
+            print("Pedido adicionado com sucesso!")
 
-    opcao = input("Escolha: ")
+        except ValueError:
+            print("Digite apenas números!")
 
-    # ADICIONAR PEDIDO
-    if opcao == "1":
-        numero_mesa = int(input("Número da mesa: "))
-        mesa = Mesa(numero_mesa)
+        except Exception as erro:
+            print(f"Erro: {erro}")
 
-        # CRIA COMANDA
-        comanda = Comanda(mesa)
-
-        print("\nCardápio:")
-        for i, p in enumerate(cardapio):
-            print(f"{i+1} - {p.nome} (R$ {p.preco})")
-
-        escolha = int(input("Escolha o produto: ")) - 1
-        quantidade = int(input("Quantidade: "))
-
-        produto = cardapio[escolha]
-
-        pedido = Pedido(produto, quantidade)
-        comanda.adicionar_item(pedido)
-
-        lista_comandas.append(comanda)
-
-        print("Pedido adicionado com sucesso!")
 
     # FECHAR MESA
     elif opcao == "2":
-        numero = int(input("Número da mesa para fechar: "))
+        try:
+            numero = int(input("Número da mesa para fechar: "))
 
-        for comanda in lista_comandas:
-            if comanda.mesa.numero == numero:
-                print(f"Fechando mesa {numero}...")
+            comanda = buscar_comanda(numero)
+
+            if comanda:
+                print(f"Total da mesa: R$ {comanda.calcular_total():.2f}")
                 lista_comandas.remove(comanda)
-                print("Mesa fechada!")
-                break
-        else:
-            print("Mesa não encontrada!")
 
-    # RELATÓRIO (AGORA FUNCIONA)
+                salvar_dados(lista_comandas)
+
+                print("Mesa fechada com sucesso!")
+
+            else:
+                print("Mesa não encontrada!")
+
+        except ValueError:
+            print("Digite apenas números!")
+
+
+    # RELATÓRIO
     elif opcao == "3":
         ver_relatorio(lista_comandas)
 
+
     # SAIR
     elif opcao == "0":
-        print("Saindo...")
+        salvar_dados(lista_comandas)
+        print("Saindo do sistema...")
         break
+
 
     else:
         print("Opção inválida!")
