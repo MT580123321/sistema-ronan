@@ -2,6 +2,7 @@ import json
 
 ARQUIVO = "dados.json"
 
+
 def salvar_dados(comandas):
     dados = []
 
@@ -20,13 +21,15 @@ def salvar_dados(comandas):
 
         dados.append(dados_comanda)
 
-    with open(ARQUIVO, "w") as f:
-        json.dump(dados, f, indent=4)
+    with open(ARQUIVO, "w", encoding="utf-8") as f:
+        json.dump(dados, f, indent=4, ensure_ascii=False)
+
 
 
 def carregar_dados():
     try:
-        with open(ARQUIVO, "r") as f:
+        with open(ARQUIVO, "r", encoding="utf-8") as f:
             return json.load(f)
+
     except FileNotFoundError:
         return []
