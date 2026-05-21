@@ -1,4 +1,5 @@
 class Comanda:
+
     def __init__(self, mesa):
         self.mesa = mesa
         self.itens = []
@@ -7,6 +8,7 @@ class Comanda:
         self.itens.append(pedido)
 
     def calcular_total(self):
+
         total = 0
 
         for item in self.itens:
