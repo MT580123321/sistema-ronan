@@ -1,6 +1,6 @@
 import json
 
-<<<<<<< HEAD
+
 def salvar(dados, arquivo):
     with open(arquivo, "w") as f:
         json.dump(dados, f)
@@ -10,7 +10,7 @@ def carregar(arquivo):
         with open(arquivo, "r") as f:
             return json.load(f)
     except:
-=======
+
 ARQUIVO = "dados.json"
 
 
@@ -43,5 +43,5 @@ def carregar_dados():
             return json.load(f)
 
     except FileNotFoundError:
->>>>>>> 2537dd920b42e569adafa6a79089b16ecda7162b
+
         return []
