@@ -1,61 +1,84 @@
- # SISTEMA DE GERENCIAMENTO DE RESTAURANTE
+# SISTEMA DE GERENCIAMENTO DE RESTAURANTE
 
-## 1. IDENTIFICAÇÃO DA EQUIPE
+# 1. IDENTIFICAÇÃO DA EQUIPE
 
-**Integrantes:**
+Integrantes:
 
 * Michel Guido
 * Andre Rocha
 * Mickael Miranda
 
----
 
-## 2. DESCRIÇÃO DO PROJETO
 
-O presente projeto consiste no desenvolvimento de um sistema simples de gerenciamento de restaurante, com o objetivo de auxiliar no controle de pedidos, comandas e mesas.
+# 2. DESCRIÇÃO DO PROJETO
 
-O sistema permite registrar pedidos por mesa, evitar duplicidade de comandas, visualizar relatórios completos e realizar o fechamento de mesas, utilizando conceitos fundamentais da programação.
+O presente projeto consiste no desenvolvimento de um sistema moderno de gerenciamento para restaurante/churrascaria denominado **Churrascaria do Ronan**.
 
----
+O sistema foi desenvolvido utilizando Python e CustomTkinter, com o objetivo de auxiliar no gerenciamento administrativo e operacional do restaurante através de uma interface gráfica moderna e intuitiva.
 
-## 3. FUNCIONALIDADES IMPLEMENTADAS
+A aplicação conta com dashboard administrativo, sistema de login, gerenciamento de clientes, produtos, pedidos e estoque, proporcionando uma experiência visual mais profissional em relação à versão inicial em console.
 
-* Adicionar pedidos a uma mesa
-* Gerenciar múltiplas comandas
-* Evitar duplicação de comandas por mesa
-* Visualizar relatório completo das mesas
-* Fechar mesa e removê-la do sistema
+O projeto representa uma evolução acadêmica do sistema original, aplicando conceitos de Programação Orientada a Objetos (POO), modularização e persistência de dados.
 
----
+
+
+# 3. FUNCIONALIDADES IMPLEMENTADAS
+
+* Sistema de login administrativo
+* Dashboard operacional moderno
+* Sidebar administrativa fixa
+* Controle de clientes
+* Controle de produtos
+* Controle de pedidos
+* Controle de estoque
+* Área de relatórios
+* Navegação entre telas
+* Interface gráfica moderna
+* Persistência de dados
+* Estrutura modularizada
+
+
 
 ## 4. ESTRUTURA DO PROJETO
 
-```
+
 sistema-ronan/
 │
 ├── README.md
+├── requirements.txt
+│
 └── src/
     ├── main.py
     ├── produto.py
     ├── mesa.py
     ├── pedido.py
     ├── comanda.py
-    └── persistencia.py
-```
+    ├── persistencia.py
+    │
+    ├── telas/
+    │   ├── dashboard.py
+    │   ├── clientes.py
+    │   ├── produtos.py
+    │   ├── estoque.py
+    │   └── relatorios.py
+    │
+    ├── assets/
+    │   └── logo.png
 
----
 
-## 5. TECNOLOGIAS UTILIZADAS
+
+# 5. TECNOLOGIAS UTILIZADAS
 
 * Python 3
+* CustomTkinter
 * Programação Orientada a Objetos (POO)
-* Manipulação de arquivos (JSON)
+* Manipulação de arquivos JSON
+* Interface gráfica desktop
 
----
 
-## 6. PARADIGMAS DE PROGRAMAÇÃO
+# 6. PARADIGMAS DE PROGRAMAÇÃO
 
-### 6.1 Programação Orientada a Objetos (POO)
+# 6.1 Programação Orientada a Objetos (POO)
 
 Utilizada na modelagem das principais entidades do sistema:
 
@@ -64,92 +87,165 @@ Utilizada na modelagem das principais entidades do sistema:
 * Pedido
 * Comanda
 
-Cada classe foi desenvolvida com atributos e métodos específicos, garantindo organização, modularidade e reutilização do código.
+Cada classe foi desenvolvida com atributos e métodos específicos, garantindo modularidade, organização e reutilização do código.
 
-### 6.2 Programação Procedural
+# 6.2 Programação Procedural
 
-Aplicada no arquivo `main.py`, responsável pelo controle do fluxo do sistema:
+Aplicada no controle do fluxo principal do sistema:
 
-* Exibição do menu interativo
-* Entrada de dados do usuário
-* Execução das funcionalidades
+* Inicialização do sistema
+* Navegação entre telas
+* Controle de login
+* Execução das funcionalidades administrativas
 
----
+# 6.3 Modularização
 
-## 7. DIVISÃO DE RESPONSABILIDADES
+O projeto foi organizado em módulos independentes:
 
-### Michel Guido — Estrutura e Modelagem (POO)
+* Dashboard
+* Clientes
+* Produtos
+* Estoque
+* Relatórios
+* Persistência
+* Interface gráfica
 
-* Criação da estrutura do projeto
-* Implementação das classes Produto e Mesa
-* Definição dos atributos e métodos principais
-* Padronização do código
+Essa estrutura facilita manutenção e futuras expansões.
 
-### Andre Rocha — Lógica de Negócio
 
-* Implementação das classes Pedido e Comanda
-* Desenvolvimento das regras do sistema:
 
-  * Adição de pedidos
-  * Controle de comandas
-  * Cálculo de totais
-  * Fechamento de mesas
+# 7. DIVISÃO DE RESPONSABILIDADES
 
-### Mickael Miranda — Interface e Execução
+## Michel Guido — Estrutura e Organização
 
-* Desenvolvimento do arquivo `main.py`
-* Criação do menu interativo
-* Entrada e validação de dados
-* Exibição de relatórios
-* Integração entre as classes
+* Estruturação do projeto
+* Organização modular
+* Desenvolvimento da persistência
+* Padronização do sistema
 
----
+## Andre Rocha — Lógica de Negócio
 
-## 8. CORREÇÕES REALIZADAS
+* Implementação das regras do sistema
+* Controle de pedidos
+* Controle de estoque
+* Desenvolvimento das funcionalidades administrativas
 
-Para esta versão do trabalho, foram realizadas as seguintes melhorias:
+## Mickael Miranda — Interface Gráfica
 
-* Organização e padronização do documento
-* Estruturação formal do projeto para entrega acadêmica
-* Revisão da descrição das funcionalidades
-* Melhor detalhamento dos paradigmas de programação utilizados
-* Clareza na divisão de responsabilidades da equipe
+* Desenvolvimento da interface moderna
+* Criação do dashboard
+* Sistema de login
+* Sidebar administrativa
+* Organização visual do sistema
 
----
 
-## 9. ROADMAP DE DESENVOLVIMENTO
+
+# 8. MELHORIAS IMPLEMENTADAS
+
+Nesta nova versão do sistema foram realizadas as seguintes melhorias:
+
+* Transformação do sistema console em sistema gráfico
+* Criação de dashboard administrativo
+* Interface moderna utilizando CustomTkinter
+* Sidebar lateral interativa
+* Melhor organização estrutural
+* Separação das telas do sistema
+* Layout mais profissional
+* Melhor experiência visual
+* Estrutura acadêmica evoluída
+* Sistema pronto para apresentação universitária
+
+
+
+# 9. ROADMAP DE DESENVOLVIMENTO
 
 * [x] Estrutura inicial do sistema
-* [x] Implementação das classes principais
-* [x] Sistema de menu interativo
-* [x] Relatório de comandas
-* [ ] Persistência automática em JSON
-* [ ] Interface gráfica
-* [ ] Controle de estoque
+* [x] Classes principais implementadas
+* [x] Sistema de menu
+* [x] Dashboard administrativo
+* [x] Interface gráfica moderna
+* [x] Sistema de login
+* [x] Sidebar funcional
+* [x] Organização modular
+* [x] Controle administrativo
+* [ ] Cadastro dinâmico de clientes
+* [ ] Cadastro dinâmico de produtos
+* [ ] Persistência automática completa
+* [ ] Relatórios avançados
+* [ ] Controle financeiro
 
----
 
-## 10. INSTRUÇÕES DE EXECUÇÃO
+# 10. INTERFACE DO SISTEMA
 
-1. Clonar o repositório:
+O sistema utiliza identidade visual moderna inspirada em dashboards administrativos.
 
-```
+# Paleta de cores:
+
+* Fundo principal: `#111111`
+* Sidebar: `#4A0E0E`
+* Cards: `#1D1D1D`
+* Botões: `#D35400`
+* Hover: `#E67E22`
+* Títulos: `#D4AF37`
+
+# Características da interface:
+
+* Dashboard moderno
+* Sidebar fixa
+* Cards administrativos
+* Layout profissional
+* Navegação intuitiva
+* Interface desktop responsiva
+
+
+
+# 11. LOGIN DO SISTEMA
+
+
+Usuário: admin
+Senha: 123
+
+
+
+
+# 12. INSTRUÇÕES DE EXECUÇÃO
+
+# 1. Clonar o repositório
+
+
 git clone https://github.com/MT580123321/sistema-ronan.git
-```
-
-2. Acessar a pasta:
-
-```
-cd sistema-ronan/src
-```
-
-3. Executar o sistema:
-
-```
-python main.py
-```
 
 
+
+### 2. Acessar a pasta do projeto
+
+
+cd sistema-ronan
+
+
+
+
+### 3. Instalar as dependências
+
+
+pip install -r requirements.txt
+
+
+
+
+### 4. Executar o sistema
+
+
+python src/main.py
+
+
+
+
+# 13. CONSIDERAÇÕES FINAIS
+
+O projeto “Churrascaria do Ronan” representa a evolução de um sistema acadêmico simples para uma aplicação desktop moderna, aplicando conceitos fundamentais de programação, engenharia de software e desenvolvimento de interfaces gráficas.
+
+O sistema foi desenvolvido com foco acadêmico, visando aprendizado prático, organização estrutural e aplicação dos conceitos de Programação Orientada a Objetos em um cenário realista de gerenciamento comercial.
 
 
 
