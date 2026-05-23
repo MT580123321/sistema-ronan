@@ -1,10 +1,10 @@
 class Pedido:
-<<<<<<< HEAD
+
     def __init__(self, cliente, produto, quantidade):
         self.cliente = cliente
         self.produto = produto
         self.quantidade = quantidade
-=======
+        
     def __init__(self, produto, quantidade):
         if quantidade <= 0:
             raise Exception("Quantidade inválida")
@@ -20,4 +20,4 @@ class Pedido:
 
     def subtotal(self):
         return self.produto.preco * self.quantidade
->>>>>>> 2537dd920b42e569adafa6a79089b16ecda7162b
+

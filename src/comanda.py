@@ -1,5 +1,5 @@
 class Comanda:
-<<<<<<< HEAD
+
     def __init__(self, cliente):
         self.cliente = cliente
         self.itens = []
@@ -20,4 +20,3 @@ class Comanda:
             total += item.subtotal()
 
         return total
->>>>>>> 2537dd920b42e569adafa6a79089b16ecda7162b
