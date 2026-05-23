@@ -1,0 +1,155 @@
+ # SISTEMA DE GERENCIAMENTO DE RESTAURANTE
+
+## 1. IDENTIFICAÇÃO DA EQUIPE
+
+**Integrantes:**
+
+* Michel Guido
+* Andre Rocha
+* Mickael Miranda
+
+---
+
+## 2. DESCRIÇÃO DO PROJETO
+
+O presente projeto consiste no desenvolvimento de um sistema simples de gerenciamento de restaurante, com o objetivo de auxiliar no controle de pedidos, comandas e mesas.
+
+O sistema permite registrar pedidos por mesa, evitar duplicidade de comandas, visualizar relatórios completos e realizar o fechamento de mesas, utilizando conceitos fundamentais da programação.
+
+---
+
+## 3. FUNCIONALIDADES IMPLEMENTADAS
+
+* Adicionar pedidos a uma mesa
+* Gerenciar múltiplas comandas
+* Evitar duplicação de comandas por mesa
+* Visualizar relatório completo das mesas
+* Fechar mesa e removê-la do sistema
+
+---
+
+## 4. ESTRUTURA DO PROJETO
+
+```
+sistema-ronan/
+│
+├── README.md
+└── src/
+    ├── main.py
+    ├── produto.py
+    ├── mesa.py
+    ├── pedido.py
+    ├── comanda.py
+    └── persistencia.py
+```
+
+---
+
+## 5. TECNOLOGIAS UTILIZADAS
+
+* Python 3
+* Programação Orientada a Objetos (POO)
+* Manipulação de arquivos (JSON)
+
+---
+
+## 6. PARADIGMAS DE PROGRAMAÇÃO
+
+### 6.1 Programação Orientada a Objetos (POO)
+
+Utilizada na modelagem das principais entidades do sistema:
+
+* Produto
+* Mesa
+* Pedido
+* Comanda
+
+Cada classe foi desenvolvida com atributos e métodos específicos, garantindo organização, modularidade e reutilização do código.
+
+### 6.2 Programação Procedural
+
+Aplicada no arquivo `main.py`, responsável pelo controle do fluxo do sistema:
+
+* Exibição do menu interativo
+* Entrada de dados do usuário
+* Execução das funcionalidades
+
+---
+
+## 7. DIVISÃO DE RESPONSABILIDADES
+
+### Michel Guido — Estrutura e Modelagem (POO)
+
+* Criação da estrutura do projeto
+* Implementação das classes Produto e Mesa
+* Definição dos atributos e métodos principais
+* Padronização do código
+
+### Andre Rocha — Lógica de Negócio
+
+* Implementação das classes Pedido e Comanda
+* Desenvolvimento das regras do sistema:
+
+  * Adição de pedidos
+  * Controle de comandas
+  * Cálculo de totais
+  * Fechamento de mesas
+
+### Mickael Miranda — Interface e Execução
+
+* Desenvolvimento do arquivo `main.py`
+* Criação do menu interativo
+* Entrada e validação de dados
+* Exibição de relatórios
+* Integração entre as classes
+
+---
+
+## 8. CORREÇÕES REALIZADAS
+
+Para esta versão do trabalho, foram realizadas as seguintes melhorias:
+
+* Organização e padronização do documento
+* Estruturação formal do projeto para entrega acadêmica
+* Revisão da descrição das funcionalidades
+* Melhor detalhamento dos paradigmas de programação utilizados
+* Clareza na divisão de responsabilidades da equipe
+
+---
+
+## 9. ROADMAP DE DESENVOLVIMENTO
+
+* [x] Estrutura inicial do sistema
+* [x] Implementação das classes principais
+* [x] Sistema de menu interativo
+* [x] Relatório de comandas
+* [ ] Persistência automática em JSON
+* [ ] Interface gráfica
+* [ ] Controle de estoque
+
+---
+
+## 10. INSTRUÇÕES DE EXECUÇÃO
+
+1. Clonar o repositório:
+
+```
+git clone https://github.com/MT580123321/sistema-ronan.git
+```
+
+2. Acessar a pasta:
+
+```
+cd sistema-ronan/src
+```
+
+3. Executar o sistema:
+
+```
+python main.py
+```
+
+
+
+
+
