@@ -1,9 +1,10 @@
-<<<<<<< HEAD
 import customtkinter as ctk
 from tkinter import messagebox
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
+
+# CORES
 
 BG = "#111111"
 SIDE = "#4A0E0E"
@@ -11,6 +12,8 @@ CARD = "#1D1D1D"
 ACC = "#D35400"
 HOVER = "#E67E22"
 GOLD = "#D4AF37"
+
+# JANELA PRINCIPAL
 
 app = ctk.CTk()
 app.geometry("1600x920")
@@ -24,18 +27,20 @@ def clear():
         w.destroy()
 
 
-def header(t):
+def header(titulo):
+
     clear()
 
     ctk.CTkLabel(
         content,
-        text=t,
+        text=titulo,
         font=("Segoe UI", 34, "bold"),
         text_color=GOLD
     ).pack(anchor="w", padx=40, pady=30)
 
 
 # DASHBOARD
+
 
 def dashboard():
 
@@ -44,14 +49,14 @@ def dashboard():
     wrap = ctk.CTkFrame(content, fg_color="transparent")
     wrap.pack(fill="x", padx=30)
 
-    dados = [
+    cards = [
         ("Clientes", "0"),
         ("Produtos", "0"),
         ("Pedidos", "0"),
         ("Estoque", "0")
     ]
 
-    for titulo, valor in dados:
+    for titulo, valor in cards:
 
         card = ctk.CTkFrame(
             wrap,
@@ -60,8 +65,8 @@ def dashboard():
             corner_radius=24,
             fg_color=CARD
         )
-        card.pack(side="left", padx=15)
 
+        card.pack(side="left", padx=15)
         card.pack_propagate(False)
 
         ctk.CTkLabel(
@@ -77,16 +82,14 @@ def dashboard():
             text_color=GOLD
         ).pack()
 
-    # ÁREA ADMINISTRATIVA
-
     resumo = ctk.CTkFrame(
         content,
         fg_color=CARD,
         corner_radius=24,
         height=260
     )
-    resumo.pack(fill="x", padx=40, pady=40)
 
+    resumo.pack(fill="x", padx=40, pady=40)
     resumo.pack_propagate(False)
 
     ctk.CTkLabel(
@@ -119,25 +122,27 @@ Nenhuma movimentação encontrada.
 
 # TABELAS
 
+
 def tabela(nome, colunas, vazio):
 
     header(nome)
 
-    top = ctk.CTkFrame(content, fg_color="transparent")
-    top.pack(fill="x", padx=30)
+    box = ctk.CTkFrame(content, fg_color="transparent")
+    box.pack(fill="x", padx=30)
 
     for c in colunas:
 
-        head = ctk.CTkFrame(
-            top,
+        linha = ctk.CTkFrame(
+            box,
             fg_color=CARD,
             corner_radius=14,
             height=55
         )
-        head.pack(fill="x", pady=5)
+
+        linha.pack(fill="x", pady=5)
 
         ctk.CTkLabel(
-            head,
+            linha,
             text=c,
             font=("Segoe UI", 17, "bold")
         ).pack(side="left", padx=25, pady=15)
@@ -148,8 +153,8 @@ def tabela(nome, colunas, vazio):
         corner_radius=20,
         height=220
     )
-    vazio_box.pack(fill="x", padx=30, pady=30)
 
+    vazio_box.pack(fill="x", padx=30, pady=30)
     vazio_box.pack_propagate(False)
 
     ctk.CTkLabel(
@@ -160,9 +165,12 @@ def tabela(nome, colunas, vazio):
     ).place(relx=0.5, rely=0.5, anchor="center")
 
 
+
 # TELAS
 
+
 def clientes():
+
     tabela(
         "Clientes",
         ["Nome", "Telefone", "CPF"],
@@ -171,6 +179,7 @@ def clientes():
 
 
 def produtos():
+
     tabela(
         "Produtos",
         ["Produto", "Preço", "Estoque"],
@@ -179,6 +188,7 @@ def produtos():
 
 
 def pedidos():
+
     tabela(
         "Pedidos",
         ["Mesa", "Cliente", "Status"],
@@ -187,14 +197,17 @@ def pedidos():
 
 
 def estoque():
+
     tabela(
         "Estoque",
         ["Item", "Quantidade", "Situação"],
-        "0 itens no estoque"
+        "0 itens em estoque"
     )
 
 
+
 # LOGIN
+
 
 login = ctk.CTkFrame(app, fg_color=BG)
 login.pack(fill="both", expand=True)
@@ -206,8 +219,8 @@ box = ctk.CTkFrame(
     corner_radius=30,
     fg_color=CARD
 )
-box.place(relx=.5, rely=.5, anchor="center")
 
+box.place(relx=.5, rely=.5, anchor="center")
 box.pack_propagate(False)
 
 ctk.CTkLabel(
@@ -236,6 +249,7 @@ u = ctk.CTkEntry(
     height=56,
     placeholder_text="Usuário"
 )
+
 u.pack(pady=12)
 
 s = ctk.CTkEntry(
@@ -245,11 +259,12 @@ s = ctk.CTkEntry(
     placeholder_text="Senha",
     show="●"
 )
+
 s.pack()
 
-
+# =========================
 # SISTEMA
-
+# =========================
 
 sys = ctk.CTkFrame(app, fg_color=BG)
 
@@ -270,6 +285,7 @@ def entrar():
             "Usuário ou senha inválidos"
         )
 
+
 ctk.CTkButton(
     box,
     text="Entrar",
@@ -281,21 +297,24 @@ ctk.CTkButton(
     command=entrar
 ).pack(pady=40)
 
+# =========================
 # SIDEBAR
+# =========================
 
 side = ctk.CTkFrame(
     sys,
     width=280,
     fg_color=SIDE
 )
-side.pack(side="left", fill="y")
 
+side.pack(side="left", fill="y")
 side.pack_propagate(False)
 
 content = ctk.CTkFrame(
     sys,
     fg_color=BG
 )
+
 content.pack(fill="both", expand=True)
 
 ctk.CTkLabel(
@@ -314,17 +333,17 @@ menus = [
     ("Estoque", estoque)
 ]
 
-for n, f in menus:
+for nome, funcao in menus:
 
     ctk.CTkButton(
         side,
-        text=n,
+        text=nome,
         width=220,
         height=52,
         fg_color=ACC,
         hover_color=HOVER,
         font=("Segoe UI", 16, "bold"),
-        command=f
+        command=funcao
     ).pack(pady=12)
 
 # BOTÃO SAIR
@@ -340,85 +359,6 @@ ctk.CTkButton(
     command=app.destroy
 ).pack(side="bottom", pady=30)
 
+# INICIAR
+
 app.mainloop()
-=======
-from produto import Produto
-            numero_mesa = int(input("Número da mesa: "))
-
-            comanda = buscar_comanda(numero_mesa)
-
-            # cria somente se não existir
-            if comanda is None:
-                mesa = Mesa(numero_mesa)
-                comanda = Comanda(mesa)
-                lista_comandas.append(comanda)
-
-            print("\nCardápio:")
-
-            for i, produto in enumerate(cardapio):
-                print(
-                    f"{i+1} - {produto.nome} "
-                    f"(R$ {produto.preco}) "
-                    f"| Estoque: {produto.estoque}"
-                )
-
-            escolha = int(input("Escolha o produto: ")) - 1
-            quantidade = int(input("Quantidade: "))
-
-            if escolha < 0 or escolha >= len(cardapio):
-                print("Produto inválido!")
-                continue
-
-            produto = cardapio[escolha]
-
-            pedido = Pedido(produto, quantidade)
-            comanda.adicionar_item(pedido)
-
-            salvar_dados(lista_comandas)
-
-            print("Pedido adicionado com sucesso!")
-
-        except ValueError:
-            print("Digite apenas números!")
-
-        except Exception as erro:
-            print(f"Erro: {erro}")
-
-
-    # FECHAR MESA
-    elif opcao == "2":
-        try:
-            numero = int(input("Número da mesa para fechar: "))
-
-            comanda = buscar_comanda(numero)
-
-            if comanda:
-                print(f"Total da mesa: R$ {comanda.calcular_total():.2f}")
-                lista_comandas.remove(comanda)
-
-                salvar_dados(lista_comandas)
-
-                print("Mesa fechada com sucesso!")
-
-            else:
-                print("Mesa não encontrada!")
-
-        except ValueError:
-            print("Digite apenas números!")
-
-
-    # RELATÓRIO
-    elif opcao == "3":
-        ver_relatorio(lista_comandas)
-
-
-    # SAIR
-    elif opcao == "0":
-        salvar_dados(lista_comandas)
-        print("Saindo do sistema...")
-        break
-
-
-    else:
-        print("Opção inválida!")
->>>>>>> 2537dd920b42e569adafa6a79089b16ecda7162b
