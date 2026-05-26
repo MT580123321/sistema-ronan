@@ -3,7 +3,6 @@ class Comanda:
     def __init__(self, cliente):
         self.cliente = cliente
         self.itens = []
-=======
 
     def __init__(self, mesa):
         self.mesa = mesa
