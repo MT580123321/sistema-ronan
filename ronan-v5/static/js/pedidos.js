@@ -18,7 +18,7 @@ async function iniciarPedidos() {
   carregarPedidos();
 }
 
-// ── CATEGORIAS ─────────────────────────────────────────────────
+//  CATEGORIAS 
 function renderCategorias() {
   const order = ['Todos','Carnes','Frango','Linguiça','Acompanhamentos','Bebidas Alcoólicas','Bebidas Não Alcoólicas','Sobremesas','Outros'];
   const fromDB = new Set(produtosLista.map(p => p.categoria).filter(Boolean));
@@ -41,7 +41,7 @@ function selecionarCat(cat) {
   renderCardapio();
 }
 
-// ── CARDÁPIO GRID ──────────────────────────────────────────────
+//  CARDÁPIO GRID 
 function renderCardapio(filtro = '') {
   const grid = document.getElementById('cardapio-grid');
   if (!grid) return;
@@ -83,7 +83,7 @@ function filtrarCardapio(val) {
   renderCardapio(val);
 }
 
-// ── MODAL PESO ─────────────────────────────────────────────────
+//  MODAL PESO 
 function abrirModalPeso(prodId) {
   const prod = produtosLista.find(p => p.id === prodId);
   if (!prod) return;
@@ -137,7 +137,7 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// ── COMANDA ────────────────────────────────────────────────────
+//  COMANDA 
 function adicionarItem(prodId) {
   const prod = produtosLista.find(p => p.id === prodId);
   if (!prod) return;
@@ -223,7 +223,7 @@ function renderComanda() {
   if (totalEl) totalEl.textContent = fmt(total);
 }
 
-// ── REGISTRAR ──────────────────────────────────────────────────
+// REGISTRAR 
 async function registrarPedido() {
   const mesa       = document.getElementById('ped-mesa')?.value;
   const cliente_id = document.getElementById('ped-cliente')?.value || null;
@@ -257,7 +257,7 @@ async function registrarPedido() {
   }
 }
 
-// ── LISTA DE PEDIDOS ───────────────────────────────────────────
+//  LISTA DE PEDIDOS 
 async function carregarPedidos() {
   const status = document.getElementById('ped-filtro-status')?.value || '';
   const q      = document.getElementById('ped-busca')?.value.trim() || '';
@@ -312,7 +312,7 @@ async function delPedido(id) {
   carregarPedidos();
 }
 
-// ── INICIALIZAR ────────────────────────────────────────────────
+//  INICIALIZAR 
 let buscaTimer;
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('ped-busca')?.addEventListener('input', () => {
