@@ -9,7 +9,7 @@ app.secret_key = 'ronan_churrascaria_2025_seguro'
 DB_PATH = os.path.join(os.path.dirname(__file__), 'database', 'ronan.db')
 SCHEMA  = os.path.join(os.path.dirname(__file__), 'database', 'schema.sql')
 
-# ── BANCO ──────────────────────────────────────────────────────
+#  BANCO
 def get_db():
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
@@ -34,7 +34,7 @@ def init_db():
 
 init_db()
 
-# ── AUTH ───────────────────────────────────────────────────────
+#  AUTH 
 def login_required(f):
     from functools import wraps
     @wraps(f)
@@ -55,7 +55,7 @@ def admin_required(f):
         return f(*args, **kwargs)
     return decorated
 
-# ── PÁGINAS ────────────────────────────────────────────────────
+#  PÁGINAS 
 @app.route('/')
 def index():
     if 'user' in session:
@@ -107,7 +107,7 @@ def usuarios_page():
         return redirect(url_for('pedidos_page'))
     return render_template('base.html', pagina='usuarios', usuario=session.get('user'), nivel=session.get('nivel'))
 
-# ── API AUTH ───────────────────────────────────────────────────
+# API AUTH 
 @app.route('/api/login', methods=['POST'])
 def api_login():
     data  = request.get_json()
@@ -148,7 +148,7 @@ def api_trocar_senha():
         conn.commit()
     return jsonify({'ok': True, 'msg': 'Senha alterada com sucesso!'})
 
-# ── API USUÁRIOS ───────────────────────────────────────────────
+# API USUÁRIOS 
 @app.route('/api/usuarios', methods=['GET'])
 @login_required
 def api_usuarios_get():
@@ -210,7 +210,7 @@ def api_usuarios_reset_senha(uid):
         conn.commit()
     return jsonify({'ok': True, 'msg': 'Senha redefinida!'})
 
-# ── API DASHBOARD ──────────────────────────────────────────────
+#  API DASHBOARD 
 @app.route('/api/dashboard')
 @login_required
 def api_dashboard():
@@ -238,7 +238,7 @@ def api_dashboard():
         'ultimos': [dict(r) for r in ultimos]
     })
 
-# ── API CLIENTES ───────────────────────────────────────────────
+# API CLIENTES 
 @app.route('/api/clientes', methods=['GET'])
 @login_required
 def api_clientes_get():
@@ -279,7 +279,7 @@ def api_clientes_del(cid):
         conn.commit()
     return jsonify({'ok': True, 'msg': 'Cliente removido!'})
 
-# ── API PRODUTOS ───────────────────────────────────────────────
+# API PRODUTOS 
 @app.route('/api/produtos', methods=['GET'])
 @login_required
 def api_produtos_get():
@@ -350,7 +350,7 @@ def api_produtos_del(pid):
         conn.commit()
     return jsonify({'ok': True})
 
-# ── API PEDIDOS ────────────────────────────────────────────────
+# API PEDIDOS
 @app.route('/api/pedidos', methods=['GET'])
 @login_required
 def api_pedidos_get():
@@ -484,7 +484,7 @@ def api_pedidos_del(pid):
         conn.commit()
     return jsonify({'ok': True})
 
-# ── API ESTOQUE ────────────────────────────────────────────────
+# API ESTOQUE 
 @app.route('/api/estoque', methods=['GET'])
 @login_required
 def api_estoque_get():
@@ -520,7 +520,7 @@ def api_estoque_put(pid):
         conn.commit()
     return jsonify({'ok': True, 'msg': 'Estoque atualizado!'})
 
-# ── API RELATÓRIOS ─────────────────────────────────────────────
+#  API RELATÓRIOS 
 @app.route('/api/relatorios')
 @login_required
 def api_relatorios():
@@ -552,9 +552,9 @@ def api_relatorios():
         'est_critico':  [dict(r) for r in est_critico]
     })
 
-# ── INICIAR ────────────────────────────────────────────────────
+# INICIAR 
 if __name__ == '__main__':
-    print("\n🔥 Churrascaria do Ronan — Sistema Web")
+    print("\n Churrascaria do Ronan — Sistema Web")
     print("   Acesse: http://localhost:5000")
     print("   Login: admin / 123\n")
     app.run(debug=True, port=5000)
