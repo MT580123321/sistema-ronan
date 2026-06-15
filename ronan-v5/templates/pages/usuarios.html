@@ -1,0 +1,50 @@
+<div class="fade-in">
+  <div class="page-title">Usuários</div>
+
+  <div class="section-card">
+    <div class="section-title">Novo Usuário</div>
+    <div class="form-row">
+      <div class="field"><label>Usuário</label><input id="usu-nome" placeholder="login"/></div>
+      <div class="field"><label>Senha</label><input id="usu-senha" type="password" placeholder="mín. 4 caracteres"/></div>
+      <div class="field" style="max-width:180px">
+        <label>Nível de Acesso</label>
+        <select id="usu-nivel">
+          <option value="operador">Operador</option>
+          <option value="admin">Administrador</option>
+        </select>
+      </div>
+      <button class="btn-action" onclick="addUsuario()">+ CADASTRAR</button>
+    </div>
+    <p style="margin-top:14px;font-size:13px;color:var(--muted)">
+      🔒 <strong>Admin</strong> — acesso total, incluindo esta tela &nbsp;|&nbsp;
+      🧑‍🍳 <strong>Operador</strong> — acesso a pedidos, estoque, clientes e produtos
+    </p>
+  </div>
+
+  <div class="section-card">
+    <div class="section-title">Usuários Cadastrados</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Usuário</th><th>Nível</th><th>Criado em</th><th>Ações</th></tr></thead>
+        <tbody id="usuarios-tbody"><tr class="empty-row"><td colspan="5">Carregando...</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Redefinir Senha -->
+<div id="modal-reset-senha" class="modal-overlay" style="display:none">
+  <div class="modal-box" style="max-width:400px">
+    <div class="modal-title">Redefinir Senha</div>
+    <input type="hidden" id="rs-id"/>
+    <p style="color:var(--muted);margin-bottom:18px">Definir nova senha para: <strong id="rs-nome" style="color:var(--gold)"></strong></p>
+    <div class="field">
+      <label>Nova Senha</label>
+      <input id="rs-senha" type="password" placeholder="mín. 4 caracteres"/>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="fecharResetSenha()">Cancelar</button>
+      <button class="btn-action" onclick="salvarResetSenha()">SALVAR</button>
+    </div>
+  </div>
+</div>

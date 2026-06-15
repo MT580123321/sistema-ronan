@@ -1,0 +1,37 @@
+<div class="fade-in">
+  <div class="page-title">Relatórios</div>
+
+  <div class="cards-row" id="rel-cards" style="grid-template-columns:repeat(3,1fr)">
+    <div class="stat-card"><div class="stat-label">Total Vendas</div><div class="stat-value" style="font-size:34px" id="rel-total">—</div><div class="stat-icon"></div></div>
+    <div class="stat-card"><div class="stat-label">Recebido</div><div class="stat-value" style="font-size:34px;color:#2ecc71" id="rel-recebido">—</div><div class="stat-icon"></div></div>
+    <div class="stat-card"><div class="stat-label">A Receber</div><div class="stat-value" style="font-size:34px;color:#e67e22" id="rel-pendente">—</div><div class="stat-icon">⏳</div></div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-title">📄 Relatório Geral</div>
+    <div class="rel-box" id="rel-texto">Carregando...</div>
+    <div style="margin-top:16px">
+      <button class="btn-action" onclick="exportarRelatorio()">⬇ EXPORTAR .TXT</button>
+    </div>
+  </div>
+
+  <div class="section-card" id="top-prod-section" style="display:none">
+    <div class="section-title">🏆 Produtos Mais Vendidos</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Posição</th><th>Produto</th><th>Qtd Vendida</th><th>Receita</th></tr></thead>
+        <tbody id="rel-top"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section-card" id="est-critico-section" style="display:none">
+    <div class="section-title" style="color:#e74c3c">Estoque Crítico</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Produto</th><th>Quantidade</th><th>Situação</th></tr></thead>
+        <tbody id="rel-est-critico"></tbody>
+      </table>
+    </div>
+  </div>
+</div>

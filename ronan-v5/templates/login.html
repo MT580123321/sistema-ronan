@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Login — Churrascaria do Ronan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --acc: #D35400; --gold: #D4AF37;
+      --bg: #07070a; --card: #111117; --text: #f0f0f0; --muted: #55555f;
+      --font-head: 'Bebas Neue', sans-serif;
+      --font-body: 'Rajdhani', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    html, body {
+      height: 100%; font-family: var(--font-body);
+      background: var(--bg); color: var(--text);
+      overflow: hidden;
+    }
+
+    /* FUNDO */
+    .bg {
+      position: fixed; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse at 50% 100%, #2d0a00 0%, #07070a 60%);
+    }
+    .glow {
+      position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0;
+      animation: glow-pulse 5s ease-in-out infinite alternate;
+    }
+    .g1 { width:700px; height:500px; left:-100px; bottom:-200px; background:radial-gradient(circle,rgba(211,84,0,.3) 0%,transparent 70%); animation-delay:0s; }
+    .g2 { width:400px; height:400px; right:-80px; bottom:-100px; background:radial-gradient(circle,rgba(212,175,55,.18) 0%,transparent 70%); animation-delay:2s; }
+    .g3 { width:300px; height:300px; left:50%; top:0; background:radial-gradient(circle,rgba(211,84,0,.1) 0%,transparent 70%); animation-delay:1s; }
+    @keyframes glow-pulse { from{opacity:.2;transform:scale(1)} to{opacity:.55;transform:scale(1.1)} }
+
+    .ember { position:absolute; border-radius:50%; background:var(--gold); opacity:0; animation:rise linear infinite; }
+    @keyframes rise { 0%{opacity:0;transform:translateY(0) scale(1)} 20%{opacity:.5} 100%{opacity:0;transform:translateY(-300px) scale(0)} }
+
+    /* CENTRO */
+    .page {
+      height: 100vh; display: flex;
+      align-items: center; justify-content: center;
+      position: relative; z-index: 1;
+      padding: 20px;
+    }
+
+    /* CARD LOGIN */
+    .login-card {
+      width: 100%; max-width: 420px;
+      background: rgba(17,17,23,.95);
+      border: 1px solid rgba(212,175,55,.12);
+      border-radius: 24px;
+      padding: 40px 38px;
+      box-shadow: 0 40px 100px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.04);
+      display: flex; flex-direction: column; align-items: center; gap: 0;
+      animation: slideUp .4s cubic-bezier(.16,1,.3,1);
+    }
+    @keyframes slideUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:none} }
+
+    /* LOGO */
+    .logo-wrap {
+      margin-bottom: 22px;
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+    }
+    .logo-img {
+      width: 90px; height: 90px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2.5px solid rgba(212,175,55,.4);
+      box-shadow: 0 0 30px rgba(211,84,0,.6), 0 0 0 6px rgba(211,84,0,.1);
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+    .brand-name {
+      font-family: var(--font-head); font-size: 26px; color: var(--gold);
+      letter-spacing: 4px; text-align: center; line-height: 1.1;
+    }
+    .brand-sub {
+      font-family: var(--font-mono); font-size: 10px; color: var(--muted);
+      letter-spacing: 3px; text-transform: uppercase; text-align: center;
+      margin-top: 2px;
+    }
+
+    /* DIVIDER */
+    .divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(212,175,55,.2), transparent);
+      margin: 20px 0;
+    }
+
+    /* TÍTULO */
+    .form-title {
+      font-family: var(--font-head); font-size: 20px; color: var(--text);
+      letter-spacing: 2px; margin-bottom: 20px; text-align: center;
+    }
+
+    /* PERFIS */
+    .perfil-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 22px; width: 100%; }
+    .perfil-btn {
+      padding: 12px 8px;
+      border: 1.5px solid rgba(255,255,255,.07);
+      border-radius: 12px;
+      background: rgba(255,255,255,.025);
+      cursor: pointer;
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      transition: all .2s; position: relative;
+    }
+    .perfil-btn:hover { border-color: rgba(255,255,255,.15); background: rgba(255,255,255,.05); }
+    .perfil-btn.active.garcom  { border-color: var(--acc); background: rgba(211,84,0,.1); }
+    .perfil-btn.active.admin   { border-color: var(--gold); background: rgba(212,175,55,.08); }
+    .perfil-nome { font-family: var(--font-head); font-size: 15px; letter-spacing: 2px; color: var(--text); }
+    .perfil-desc { font-size: 10px; color: var(--muted); letter-spacing: .3px; }
+    .perfil-btn.active .perfil-nome { color: var(--gold); }
+    .perfil-check {
+      position:absolute; top:6px; right:6px;
+      width:15px; height:15px; border-radius:50%;
+      background:var(--gold); color:#111; font-size:8px; font-weight:900;
+      display:none; align-items:center; justify-content:center;
+    }
+    .perfil-btn.active .perfil-check { display:flex; }
+
+    /* INPUTS */
+    .fields { display:flex; flex-direction:column; gap:10px; margin-bottom:16px; width:100%; }
+    .inp-wrap {
+      display:flex; align-items:center;
+      background: rgba(255,255,255,.04);
+      border: 1.5px solid rgba(255,255,255,.08);
+      border-radius: 12px;
+      padding: 0 15px; gap: 10px;
+      transition: border-color .2s, background .2s;
+    }
+    .inp-wrap:focus-within { border-color: var(--acc); background: rgba(211,84,0,.05); }
+    .inp-wrap input {
+      flex:1; background:none; border:none; outline:none;
+      color:var(--text); font-family:var(--font-body);
+      font-size:16px; font-weight:500; padding:14px 0;
+    }
+    .inp-wrap input::placeholder { color:#2a2a32; }
+
+    .erro { color:#e74c3c; font-size:12px; font-family:var(--font-mono); text-align:center; min-height:16px; margin-bottom:12px; width:100%; }
+
+    .btn-entrar {
+      width:100%; padding:15px;
+      background: linear-gradient(135deg, #D35400, #9f3e00);
+      color:#fff; border:none; border-radius:12px;
+      font-family:var(--font-head); font-size:20px; letter-spacing:4px;
+      cursor:pointer; transition:all .2s;
+      box-shadow: 0 4px 20px rgba(211,84,0,.4);
+      margin-bottom:12px;
+    }
+    .btn-entrar:hover { box-shadow:0 6px 28px rgba(211,84,0,.65); transform:translateY(-1px); }
+    .btn-entrar:active { transform:scale(.98); box-shadow:none; }
+
+    .hint { font-size:11px; color:#2a2a32; font-family:var(--font-mono); text-align:center; }
+
+    @media (max-width: 480px) {
+      .login-card { padding: 30px 22px; }
+      .logo-img { width: 72px; height: 72px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg">
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+    <div class="glow g3"></div>
+  </div>
+
+  <div class="page">
+    <div class="login-card">
+
+      <!-- LOGO -->
+      <div class="logo-wrap">
+        <img src="/static/logo.png" alt="Churrascaria do Ronan" class="logo-img"/>
+        <div>
+          <div class="brand-name">CHURRASCARIA<br>DO RONAN</div>
+          <div class="brand-sub">Sistema de Gestão</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="form-title">ACESSO AO SISTEMA</div>
+
+      <!-- PERFIS (sem ícones) -->
+      <div class="perfil-row">
+        <button class="perfil-btn garcom active" id="btn-garcom" onclick="selecionarPerfil('garcom')">
+          <div class="perfil-check">✓</div>
+          <div class="perfil-nome">GARÇOM</div>
+          <div class="perfil-desc">Pedidos & Mesas</div>
+        </button>
+        <button class="perfil-btn admin" id="btn-admin" onclick="selecionarPerfil('admin')">
+          <div class="perfil-check">✓</div>
+          <div class="perfil-nome">ADMIN</div>
+          <div class="perfil-desc">Acesso completo</div>
+        </button>
+      </div>
+
+      <div class="fields">
+        <div class="inp-wrap">
+          <input id="l-user" type="text" placeholder="Usuário" autocomplete="off"/>
+        </div>
+        <div class="inp-wrap">
+          <input id="l-pass" type="password" placeholder="Senha"/>
+        </div>
+      </div>
+
+      <p class="erro" id="l-error"></p>
+      <button class="btn-entrar" onclick="fazerLogin()">ENTRAR</button>
+      <p class="hint" id="l-hint">garcom / ronan2025</p>
+
+    </div>
+  </div>
+
+  <script>
+    // Brasas
+    const bg = document.querySelector('.bg');
+    for (let i = 0; i < 22; i++) {
+      const e = document.createElement('div');
+      e.className = 'ember';
+      e.style.cssText = `left:${Math.random()*100}vw;bottom:${Math.random()*15}vh;
+        width:${1+Math.random()*3}px;height:${1+Math.random()*3}px;
+        animation-duration:${3+Math.random()*6}s;animation-delay:${Math.random()*5}s`;
+      bg.appendChild(e);
+    }
+
+    let perfilSelecionado = 'garcom';
+
+    function selecionarPerfil(tipo) {
+      perfilSelecionado = tipo;
+      document.getElementById('btn-garcom').classList.toggle('active', tipo === 'garcom');
+      document.getElementById('btn-admin').classList.toggle('active',  tipo === 'admin');
+      document.getElementById('l-hint').textContent =
+        tipo === 'admin' ? 'admin / ronan2025' : 'garcom / ronan2025';
+      document.getElementById('l-error').textContent = '';
+    }
+
+    document.addEventListener('keydown', e => { if (e.key === 'Enter') fazerLogin(); });
+
+    async function fazerLogin() {
+      const u   = document.getElementById('l-user').value.trim();
+      const s   = document.getElementById('l-pass').value;
+      const err = document.getElementById('l-error');
+      if (!u || !s) { err.textContent = 'Preencha usuário e senha'; return; }
+
+      const r = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: u, senha: s })
+      });
+      const d = await r.json();
+
+      if (d.ok) {
+        if (perfilSelecionado === 'admin' && d.nivel !== 'admin') {
+          err.textContent = 'Acesso negado: esta conta não é administrador';
+          return;
+        }
+        window.location.href = d.nivel === 'admin' ? '/dashboard' : '/pedidos';
+      } else {
+        err.textContent = d.msg || 'Usuário ou senha inválidos';
+        document.getElementById('l-pass').value = '';
+      }
+    }
+  </script>
+</body>
+</html>

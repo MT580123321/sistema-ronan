@@ -1,0 +1,30 @@
+<div class="fade-in">
+  <div class="page-title">Dashboard Operacional</div>
+
+  <div class="cards-row" id="dash-cards">
+    <div class="stat-card"><div class="stat-label">Clientes</div><div class="stat-value" id="dc-clientes">—</div><div class="stat-icon"></div></div>
+    <div class="stat-card"><div class="stat-label">Produtos</div><div class="stat-value" id="dc-produtos">—</div><div class="stat-icon"></div></div>
+    <div class="stat-card"><div class="stat-label">Pedidos</div><div class="stat-value" id="dc-pedidos">—</div><div class="stat-icon"></div></div>
+    <div class="stat-card"><div class="stat-label">Itens Estoque</div><div class="stat-value" id="dc-estoque">—</div><div class="stat-icon"></div></div>
+  </div>
+
+  <div class="resumo-card">
+    <div class="resumo-title">Resumo Administrativo</div>
+    <div class="resumo-grid" id="dash-resumo">
+      <div class="resumo-item">Total em vendas <span class="ri-val" id="dr-vendas">—</span></div>
+      <div class="resumo-item">Valor recebido <span class="ri-val" id="dr-recebido">—</span></div>
+      <div class="resumo-item">⏳ A receber <span class="ri-val" id="dr-pendente">—</span></div>
+      <div class="resumo-item">Estoque crítico <span class="ri-val" id="dr-estbaixo">—</span></div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-title">🕒 Últimos Pedidos</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Mesa</th><th>Cliente</th><th>Total</th><th>Status</th><th>Data</th></tr></thead>
+        <tbody id="dash-ultimos"><tr class="empty-row"><td colspan="6">Carregando...</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>

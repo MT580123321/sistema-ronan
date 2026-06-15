@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="theme-color" content="#07070a"/>
+  <title>Churrascaria do Ronan</title>
+  <link rel="stylesheet" href="/static/css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- Botão hamburguer mobile -->
+  <button id="btn-menu" onclick="toggleSidebar()" aria-label="Menu">☰</button>
+
+  <!-- Overlay para fechar sidebar no mobile -->
+  <div id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+  <div id="app">
+    <!-- SIDEBAR ──────────────────────────────────────────────── -->
+    <aside id="sidebar">
+
+      <div class="brand">
+        <img src="/static/logo.png" alt="Logo" class="brand-logo"/>
+        <div class="brand-text">
+          <div class="brand-name">CHURRASCARIA</div>
+          <div class="brand-name">DO RONAN</div>
+          <div class="brand-tagline">TRADIÇÃO · SABOR</div>
+        </div>
+      </div>
+
+      {% if nivel == 'admin' %}
+        <div class="perfil-badge admin">Administrativo</div>
+      {% else %}
+        <div class="perfil-badge garcom">Garçom / Atendente</div>
+      {% endif %}
+
+      <nav class="nav">
+        {% if nivel == 'admin' %}
+          <a href="/dashboard"  class="nav-btn {% if pagina=='dashboard' %}active{% endif %}">Dashboard</a>
+          <div class="nav-sep"></div>
+        {% endif %}
+
+        <a href="/clientes"   class="nav-btn {% if pagina=='clientes' %}active{% endif %}">Clientes</a>
+        <a href="/produtos"   class="nav-btn {% if pagina=='produtos' %}active{% endif %}">Cardápio</a>
+        <a href="/pedidos"    class="nav-btn {% if pagina=='pedidos' %}active{% endif %}">Pedidos</a>
+
+        {% if nivel == 'admin' %}
+          <div class="nav-sep"></div>
+          <a href="/estoque"    class="nav-btn {% if pagina=='estoque' %}active{% endif %}">Estoque</a>
+          <a href="/relatorios" class="nav-btn {% if pagina=='relatorios' %}active{% endif %}">Relatórios</a>
+          <a href="/usuarios"   class="nav-btn {% if pagina=='usuarios' %}active{% endif %}">Usuários</a>
+        {% endif %}
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="user-info">
+          <div>
+            <div class="user-name">{{ usuario }}</div>
+            <div class="user-nivel">{{ nivel }}</div>
+          </div>
+        </div>
+        <div class="footer-btns">
+          <button class="btn-trocar-senha" onclick="abrirTrocarSenha()" title="Trocar senha">Senha</button>
+          <button class="btn-sair" onclick="logout()">Sair</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTENT ──────────────────────────────────────────────── -->
+    <div id="content-wrap">
+      <!-- TOPBAR -->
+      <header id="topbar">
+        <div class="topbar-left">
+          <img src="/static/logo.png" alt="Logo" class="topbar-logo"/>
+          <div class="topbar-divider"></div>
+          <div class="topbar-page-name">
+            {% if pagina=='dashboard' %}Dashboard
+            {% elif pagina=='clientes' %}Clientes
+            {% elif pagina=='produtos' %}Cardápio
+            {% elif pagina=='pedidos' %}Pedidos
+            {% elif pagina=='estoque' %}Estoque
+            {% elif pagina=='relatorios' %}Relatórios
+            {% elif pagina=='usuarios' %}Usuários
+            {% endif %}
+          </div>
+        </div>
+        <div class="topbar-right">
+          <div class="topbar-info">
+            <span class="topbar-user">{{ usuario }}</span>
+            <span class="topbar-nivel">{{ nivel }}</span>
+          </div>
+          <div class="topbar-clock" id="topbar-clock"></div>
+        </div>
+      </header>
+
+      <main id="content">
+        {% if pagina == 'dashboard' %}   {% include 'pages/dashboard.html' %}
+        {% elif pagina == 'clientes' %}  {% include 'pages/clientes.html' %}
+        {% elif pagina == 'produtos' %}  {% include 'pages/produtos.html' %}
+        {% elif pagina == 'pedidos' %}   {% include 'pages/pedidos.html' %}
+        {% elif pagina == 'estoque' %}   {% include 'pages/estoque.html' %}
+        {% elif pagina == 'relatorios' %}{% include 'pages/relatorios.html' %}
+        {% elif pagina == 'usuarios' %}  {% include 'pages/usuarios.html' %}
+        {% endif %}
+      </main>
+    </div>
+  </div>
+
+  <div id="toast"></div>
+
+  <!-- Modal Trocar Senha -->
+  <div id="modal-trocar-senha" class="modal-overlay" style="display:none">
+    <div class="modal-box" style="max-width:400px">
+      <div class="modal-title">Trocar Senha</div>
+      <div class="field" style="margin-bottom:12px"><label>Senha Atual</label><input id="ts-atual" type="password" placeholder="••••••"/></div>
+      <div class="field" style="margin-bottom:12px"><label>Nova Senha</label><input id="ts-nova" type="password" placeholder="mín. 4 caracteres"/></div>
+      <div class="field"><label>Confirmar Nova Senha</label><input id="ts-confirma" type="password" placeholder="••••••"/></div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="fecharTrocarSenha()">Cancelar</button>
+        <button class="btn-action" onclick="salvarSenha()">SALVAR</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Detalhes Pedido -->
+  <div id="modal-pedido" class="modal-overlay" style="display:none">
+    <div class="modal-box" style="width:580px">
+      <div class="modal-title">Detalhes do Pedido</div>
+      <div id="modal-pedido-content"></div>
+      <div class="modal-actions">
+        <button class="btn-cancel" onclick="fecharModalPedido()">Fechar</button>
+        <button class="btn-action" onclick="imprimirPedido()">IMPRIMIR</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/main.js"></script>
+  <script src="/static/js/{{ pagina }}.js"></script>
+  <script>
+    // Relógio
+    function tickClock() {
+      const el = document.getElementById('topbar-clock');
+      if (!el) return;
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2,'0');
+      const m = String(now.getMinutes()).padStart(2,'0');
+      const s = String(now.getSeconds()).padStart(2,'0');
+      const d = now.toLocaleDateString('pt-BR',{weekday:'short',day:'2-digit',month:'short'});
+      el.innerHTML = `<span class="clock-time">${h}:${m}<span class="clock-s">:${s}</span></span><span class="clock-date">${d}</span>`;
+    }
+    tickClock();
+    setInterval(tickClock, 1000);
+
+    // Sidebar mobile
+    function toggleSidebar() {
+      const s = document.getElementById('sidebar');
+      const o = document.getElementById('sidebar-overlay');
+      s.classList.toggle('open');
+      o.classList.toggle('active');
+    }
+    function closeSidebar() {
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('sidebar-overlay').classList.remove('active');
+    }
+    // Fechar sidebar ao navegar no mobile
+    document.querySelectorAll('.nav-btn').forEach(a => {
+      a.addEventListener('click', () => {
+        if (window.innerWidth <= 900) closeSidebar();
+      });
+    });
+  </script>
+</body>
+</html>

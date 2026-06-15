@@ -1,0 +1,28 @@
+<div class="fade-in">
+  <div class="page-title">Clientes</div>
+
+  <div class="section-card">
+    <div class="section-title">Cadastrar Novo Cliente</div>
+    <div class="form-row">
+      <div class="field"><label>Nome</label><input id="cli-nome" placeholder="Nome completo"/></div>
+      <div class="field"><label>Telefone</label><input id="cli-tel" placeholder="(00) 00000-0000"/></div>
+      <div class="field"><label>CPF</label><input id="cli-cpf" placeholder="000.000.000-00"/></div>
+      <button class="btn-action" onclick="addCliente()">+ CADASTRAR</button>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-title-row">
+      <div class="section-title" style="margin-bottom:0">Lista de Clientes <span class="count-badge" id="cli-count"></span></div>
+      <div class="field" style="max-width:300px;margin:0">
+        <input id="cli-busca" placeholder="🔍  Buscar por nome, telefone ou CPF…"/>
+      </div>
+    </div>
+    <div class="table-wrap" style="margin-top:18px">
+      <table>
+        <thead><tr><th>#</th><th>Nome</th><th>Telefone</th><th>CPF</th><th>Cadastro</th><th>Ações</th></tr></thead>
+        <tbody id="clientes-tbody"><tr class="empty-row"><td colspan="6">Carregando...</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>
