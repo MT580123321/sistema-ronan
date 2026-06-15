@@ -1,4 +1,4 @@
-// ── HELPERS ────────────────────────────────────────────────────
+//  HELPERS 
 function atualizarLabelPreco(catSelectId, labelId) {
   const cat      = document.getElementById(catSelectId)?.value || '';
   const pesoBool = document.getElementById(
@@ -11,7 +11,7 @@ function atualizarLabelPreco(catSelectId, labelId) {
   if (hint) hint.style.display = pesoBool ? 'block' : 'none';
 }
 
-// ── LISTAR ─────────────────────────────────────────────────────
+//  LISTAR 
 async function carregarProdutos(q = '', cat = '') {
   let url = '/api/produtos';
   const params = [];
@@ -61,7 +61,7 @@ function getFiltros() {
   };
 }
 
-// ── ADICIONAR ──────────────────────────────────────────────────
+//  ADICIONAR 
 async function addProduto() {
   const nome     = document.getElementById('prod-nome').value.trim();
   const preco    = parseFloat(document.getElementById('prod-preco').value);
@@ -85,7 +85,7 @@ async function addProduto() {
   }
 }
 
-// ── EDITAR ─────────────────────────────────────────────────────
+//  EDITAR 
 function abrirEditProduto(btn) {
   const id       = btn.dataset.id;
   const nome     = decodeURIComponent(btn.dataset.nome);
