@@ -29,7 +29,7 @@ Total bruto       : <span style="color:#2ecc71">${fmt(r.total_vendas)}</span>
 Valor recebido    : <span style="color:#2ecc71">${fmt(r.recebido)}</span>
 A receber         : <span style="color:var(--acc)">${fmt(r.a_receber)}</span>
 
-<span style="color:var(--gold)">===== FIM DO RELATÓRIO =====</span>`;
+<span style="color:var(--gold)"> FIM DO RELATÓRIO </span>`;
 
   // Top produtos
   if (dadosRel.top_produtos.length) {
@@ -73,7 +73,7 @@ FINANCEIRO:
 TOP PRODUTOS:
 ${dadosRel.top_produtos.map((p,i)=>`  ${i+1}. ${p.nome} — ${p.total_vendido} un — ${fmt(p.receita)}`).join('\n') || '  Nenhum'}
 
-===== FIM =====`;
+ FIM `;
 
   const blob = new Blob([texto], { type: 'text/plain;charset=utf-8' });
   const a = document.createElement('a');
