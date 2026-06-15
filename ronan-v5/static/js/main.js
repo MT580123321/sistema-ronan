@@ -1,4 +1,4 @@
-// ── UTILITÁRIOS GLOBAIS ─────────────────────────────────────
+//  UTILITÁRIOS GLOBAIS 
 function fmt(n) {
   return 'R$ ' + Number(n).toFixed(2).replace('.', ',');
 }
@@ -56,7 +56,7 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// ── TROCAR SENHA ─────────────────────────────────────────────
+//  TROCAR SENHA 
 function abrirTrocarSenha() {
   ['ts-atual', 'ts-nova', 'ts-confirma'].forEach(id => {
     const el = document.getElementById(id);
@@ -83,7 +83,7 @@ async function salvarSenha() {
   }
 }
 
-// ── MODAL DETALHES PEDIDO ─────────────────────────────────────
+//  MODAL DETALHES PEDIDO 
 let _pedidoParaImprimir = null;
 
 async function verDetalhesPedido(pid) {
